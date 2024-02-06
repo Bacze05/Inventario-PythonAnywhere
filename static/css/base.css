@@ -1,0 +1,55 @@
+/* Ejemplo de estilo para la barra de navegación */
+.navbar {
+  background-color: #001F3F; /* Azul Marino */
+  color: white;
+}
+
+.nav-link{
+  color: white;
+}
+
+/* Estilos para los botones */
+.btn {
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.btn-3d {
+  transform: perspective(1px) translateZ(0);
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+
+.btn-3d:hover {
+  transform: scale(1.05);
+}
+
+.footer{
+  background-color: #001F3F ;
+}
+/* Seleccionar todos los elementos p y establecer el color del texto a blanco */
+p {
+  color: white;
+}
+
+/* Seleccionar todos los elementos li y establecer el color del texto a blanco */
+li {
+  color: white;
+}
+
+/* Seleccionar todos los elementos h4 y establecer el color del texto a blanco */
+.h4 {
+  color: white;
+  
+  
+}
+
+
+
+
+
+

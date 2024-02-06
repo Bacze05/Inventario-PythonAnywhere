@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load static %}
+{%block css%} <link rel="stylesheet" href="{%static 'css/categorias.css'%}"> {%endblock css%}
+{% block content %}
+<div class="container mt-6">
+    <div class="container text-center mt-5">
+        
+
+        <div class="row ">
+            <div class=" form-group col-md-8 mt-2 d-flex justify-content-center align-items-center">
+                <h1 class="fst-italic ">Categorias</h1>
+            </div>
+            {%if perms.Inventario.add_category%}
+            <div class="col-md-4 mt-2 d-flex justify-content-end">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#Creacion">
+                    Crear Categorias
+                  </button>
+            </div>
+            {%endif%}
+        </div>
+
+        <div class="mb-5 mt-5 row col-12 justify-content-center">
+            {% for c in categorias %}
+                <div class="card mx-3 mb-3 shadow border" id="card-{{ forloop.counter }}" style="width: 15rem;">
+                    {% if c.foto %}
+                        <img src="{{ c.foto.url }}" class="card-img-top" alt="..." height="150px">
+                    {% endif %}
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ c.name }}</h5>
+                        <p class="card-text">{{ c.descripcion }}</p>
+                        <a href="{% url 'listaProductos' c.name %}" class="btn btn-3d btn-primary"><i class="fa-solid fa-eye"></i> Ver Listado</a>
+                        
+                        <div class="form-group mt-2 row">
+                            {% if perms.Inventario.change_category %}
+                                <a href="{% url 'editarCategoria' c.id %}" class="btn btn-3d btn-warning mr-2 col-7">Modificar</a>
+                            {% endif %}
+                            
+                            {% if perms.Inventario.delete_category %}
+                                <a href="{% url 'eliminarCategoria' c.id %}" class="btn btn-3d btn-danger mr-2 col-4"><i class="fa-regular fa-trash-can"></i> </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        
+         <!-- Modal Creacion-->
+  <div class="modal fade" id="Creacion" tabindex="-1" aria-labelledby="exampleModalLabel" data-bs-backdrop="static" data-bs-keyboard="false" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">                    <strong>Formulario de Registro</strong>
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form method="POST"  autocomplete="off">
+                {% csrf_token %}
+                      {{ form.as_p}}
+                      <div class="modal-footer">
+                        <a href="{% url 'categorias' %}" class="btn btn-3d btn-dark">Cancelar</a>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+              </form>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
