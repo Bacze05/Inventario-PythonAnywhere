@@ -38,6 +38,7 @@
             <li class="nav-item">
               <a class="nav-link text-light  " aria-current="page" href="{% url 'home'%}">Home</a>
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item dropdown">
               <a class="nav-link text-light  dropdown-toggle" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
@@ -67,6 +68,7 @@
                 
               </ul>
             </li>
+            {% endif %}
 
 
 
