@@ -11,6 +11,7 @@ class CategoryForm(forms.ModelForm):
         max_length=50,
         required=True,
         help_text='Ingrese el nombre de la categoría.',
+        error_messages={'required': 'El campo de Nombre es obligatorio.'}  # Mensaje personalizado para campos requeridos
     )
 
     descripcion = forms.CharField(
@@ -23,6 +24,7 @@ class CategoryForm(forms.ModelForm):
 
     foto = forms.ImageField(
         required=False,
+        label='Imagen referencial',
         widget=forms.ClearableFileInput(attrs={'class': 'form-control-file'}),
         help_text='Seleccione una imagen para la categoría (opcional).',
     )
@@ -32,10 +34,12 @@ class CategoryForm(forms.ModelForm):
         if nombre.strip() == '':
             raise forms.ValidationError("El nombre no puede consistir solo de espacios en blanco.")
         return nombre
+    
 
     class Meta:
         model = Category
         fields = '__all__'
+        
 
 
 
@@ -76,6 +80,7 @@ class ProductForm(forms.ModelForm):
     name_category = forms.ModelChoiceField(
         queryset=Category.objects.all(),
         widget=forms.Select(attrs={'class': 'form-control'}),
+        empty_label="Seleccione una categoria"
     )
     price_sold = forms.IntegerField(
         widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Precio de Venta'}),
@@ -92,9 +97,14 @@ class ProductForm(forms.ModelForm):
     minimum_amount = forms.IntegerField(
         widget=forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Cantidad Mínima'}),
     )
+    # suppliers = forms.ModelChoiceField(
+    #     queryset=Suppliers.objects.all(),
+    #     widget=forms.Select(attrs={'class': 'form-control'}),
+    # )
     suppliers = forms.ModelChoiceField(
         queryset=Suppliers.objects.all(),
         widget=forms.Select(attrs={'class': 'form-control'}),
+        empty_label="Seleccione un proveedor"  # Agrega esta línea para mostrar un texto por defecto en el select
     )
     imagen = forms.ImageField(
         required=False,
