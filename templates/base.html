@@ -47,7 +47,7 @@
               <ul class="dropdown-menu">
                 {%if perms.Inventario.view_category%}
                 <li class="nav-item">
-                  <a class="nav-link " href="{% url 'categorias' %}">Categorías</a>
+                  <a class="nav-link " href="{% url 'categorias1' %}">Categorías</a>
                 </li>
                 {%endif%}
                 {% if perms.Inventario.view_suppliers %}
@@ -92,12 +92,12 @@
           <a href="" class="nav-link text-warning disabled">Usuario: <b>{{user.username}}</b></a>
         </li>
         <li class="nav-item ">
-          <a href="{% url 'logout' %}" class=" btn btn-info  ">Cerrar Sesión</a>
+          <a href="{% url 'logout' %}" class=" btn btn-principal  ">Cerrar Sesión</a>
         </li>
 
         {% else %}
         <li class="nav-item">
-          <a href="{% url 'login' %}" class="btn btn-info ">Iniciar Sesión</a>
+          <a href="{% url 'login' %}" class="btn btn-principal ">Iniciar Sesión</a>
         </li>
 
         {% endif %}

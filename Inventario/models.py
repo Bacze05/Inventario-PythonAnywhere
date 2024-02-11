@@ -48,13 +48,13 @@ class Product(models.Model):
         return os.path.join(ruta, nombre)
 
     imagen = models.ImageField(upload_to=generarNombre, null=True, default='productos/producto.png')
-    def clean(self):
+    # def clean(self):
          
-        # Realiza validaciones adicionales al limpiar los datos del modelo.
-        # En este caso, asegura que el precio de venta sea mayor que el precio de compra.
+    #     # Realiza validaciones adicionales al limpiar los datos del modelo.
+    #     # En este caso, asegura que el precio de venta sea mayor que el precio de compra.
     
-        if self.price_sold <= self.buy_price:
-            raise ValidationError('El precio de venta debe ser mayor que el precio de compra.')
+        # if self.price_sold <= self.buy_price:
+        #     raise ValidationError('El precio de venta debe ser mayor que el precio de compra.')
     
     def actualizar_stock_venta(self, cantidad):
         if self.stock >= cantidad:

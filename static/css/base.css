@@ -1,6 +1,9 @@
+body{
+  background-color: #001F3F;
+}
 /* Ejemplo de estilo para la barra de navegación */
 .navbar {
-  background-color: #001F3F; /* Azul Marino */
+  background-color: #3e78b2; /* Azul Marino */
   color: white;
 }
 
@@ -16,6 +19,10 @@
   font-weight: bold;
   padding: 10px 20px;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+.btn-principal{
+  color: #00b4ff;
 }
 
 .btn-3d {

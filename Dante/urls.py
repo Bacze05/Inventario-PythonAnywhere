@@ -60,6 +60,9 @@ urlpatterns = [
     path('usuariosListApi/', Api.usuario_listado, name='usuariolistApi'),
     path('productosListApi/', Api.productos_listado, name='productolistApi'),
     path('usuariosListApi/<int:pk>/', Api.usuario_detalle, name='usuariodetalleApi'),
+    #Prueba paginas
+    path('categorias1/', inventario.ListaCategorias.as_view(), name='categorias1'),
+
 ]  
 
 if settings.DEBUG:

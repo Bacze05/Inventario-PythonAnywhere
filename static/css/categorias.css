@@ -1,9 +1,12 @@
 body{
-    background-color: white;
+    background-color:#3e78b2;
 }
+h1{
 
+    color: #F2B500;
+}
 .card{
-    background-color: white;
+    background-color: #3e78b2;
 }
 /* Ajustes para la clase .form-group.row dentro de la tarjeta */
 .card .form-group.row {

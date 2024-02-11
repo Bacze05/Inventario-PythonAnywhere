@@ -46,7 +46,7 @@ class CategoriaEdicion(LoginRequiredMixin,UpdateView):
     model = Category
     template_name = 'inventario/mantenedorCategoria.html'
     form_class = CategoryForm
-    success_url = reverse_lazy('categorias')
+    success_url = reverse_lazy('categorias1')
 
     def form_valid(self, form):
         # Llamamos al método form_valid de la clase base
@@ -58,12 +58,40 @@ class CategoriaEdicion(LoginRequiredMixin,UpdateView):
     
 class CategoriaEliminar(LoginRequiredMixin,DeleteView):
     model=Category
-    success_url=reverse_lazy('categorias')
+    success_url=reverse_lazy('categorias1')
 
     def form_valid(self,form):
         messages.success(self.request, "Eliminado Correctamente")
         return super().form_valid(form)
+#Categoria 2 Probando
     
+class ListaCategorias(LoginRequiredMixin,View):
+    model=Category
+    form_class= CategoryForm
+    template_name='inventario/listaCategorias.html'
+    def get_queryset(self):
+        return self.model.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        context = {}
+        context["categorias"] = self.get_queryset()
+        context["form"] = self.form_class
+        return context
+    
+    
+    def get(self, request, *args, **kwargs):
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            data = serialize('json', self.get_queryset())
+            return HttpResponse(data, 'application/json')
+        else:
+            return render(request,self.template_name,self.get_context_data())   
+    
+    def post(self,request,*args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('categoriaList')
+            
 # PROVEEDORES CRUD
 
 class ListaProveedores(LoginRequiredMixin,View):
