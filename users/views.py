@@ -126,12 +126,12 @@ def activar_usuario(request, pk):
 
 def exit(request):
     logout(request)
-    return redirect('menuP')
+    return redirect('home')
 
 class CambiarPassword(View):
     template_name="user/cambiar_password.html"
     form_class=CambiarPasswordForm
-    success_url= reverse_lazy("panelAdmin")
+    success_url= reverse_lazy("home")
 
     def get(self,request,*args,**kwargs):
         return render(request,self.template_name,{'form':self.form_class})
