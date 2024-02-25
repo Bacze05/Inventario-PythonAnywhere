@@ -2,7 +2,7 @@
 {% load static %}
 {%block nav%}{%endblock nav%}
 {% block css %}
-    <link rel="stylesheet" href="{% static 'css/mantenedorProducto.css' %}">
+<link rel="stylesheet" href="{% static 'css/inventario/mantenedorProducto.css' %}">
 {% endblock css %}
 
 {% block content %}
@@ -25,8 +25,8 @@
 
     <div class="d-flex justify-content-between">
         <a href="{%url 'categorias'%}" class="btn btn-3d btn-dark">Ir al inicio</a>
-        
-        <button type="submit"  class="btn btn-3d btn-primary">Guardar</button>
+
+        <button type="submit" class="btn btn-3d btn-primary">Guardar</button>
     </div>
 </form>
 

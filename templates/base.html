@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="{% static 'css/base.css' %}">
+  <link rel="stylesheet" href="{% static 'css/inventario/base.css' %}">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
@@ -38,6 +38,7 @@
             <li class="nav-item">
               <a class="nav-link text-light  " aria-current="page" href="{% url 'home'%}">Home</a>
             </li>
+            {% if user.is_authenticated %}
             <li class="nav-item dropdown">
               <a class="nav-link text-light  dropdown-toggle" role="button" data-bs-toggle="dropdown"
                 aria-expanded="false">
@@ -64,9 +65,10 @@
                 </li>
                 {% endif %}
 
-                
+
               </ul>
             </li>
+            {%endif%}
 
 
 
@@ -135,11 +137,12 @@
       <div class="row">
         <div class="col-lg-8 col-md-6">
           <h4 class="h4">Contacto</h4>
-          <p><i class="fas fa-map-marker-alt"></i> Dirección: 123 Calle Ficticia, Colonia Imaginaria, Ciudad Irreal, Estado de los Sueños, Código Postal: 12345, País de la Imaginación.</p>
+          <p><i class="fas fa-map-marker-alt"></i> Dirección: 123 Calle Ficticia, Colonia Imaginaria, Ciudad Irreal,
+            Estado de los Sueños, Código Postal: 12345, País de la Imaginación.</p>
           <p><i class="fas fa-phone"></i> Teléfono: +595 6995821</p>
           <p><i class="fas fa-envelope"></i> Correo: Soporte@sistemaventainventario.com</p>
         </div>
-        
+
         <div class="col-lg-4">
           <h4 class="h4">Síguenos</h4>
           <ul class="list-unstyled">
@@ -157,7 +160,7 @@
     </div>
   </footer>
   {% endblock content %}
-  
+
 
 </body>
 {% if messages %}

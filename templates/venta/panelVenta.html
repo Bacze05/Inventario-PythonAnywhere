@@ -2,7 +2,7 @@
 {% load static %}
 {%block css%}
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="{% static 'css/panelVenta.css'%}">
+<link rel="stylesheet" href="{% static 'css/inventario/panelVenta.css'%}">
 {%endblock css%}
 {%load static%}
 
@@ -93,11 +93,11 @@
                     </select>
                 </div>
             </div>
-            <div  id="ventaForm" class="text-center mt-3">
+            <div id="ventaForm" class="text-center mt-3">
                 <!-- Formulario de venta -->
                 <form id="formularioVenta" method="POST">
                     {% csrf_token %}
-                    <input type="hidden" name="venta" value="1"/>
+                    <input type="hidden" name="venta" value="1" />
                     <input type="hidden" id="producto_id" name="producto" />
                     <input type="hidden" id="bar_code" name="bar_code" />
                     <input type="hidden" id="cantidad" name="cantidad" />
@@ -108,7 +108,7 @@
                     <button type="submit" class="btn btn-danger">Cancelar</button>
                 </form>
 
-                
+
             </div>
 
         </div>

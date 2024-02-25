@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, FormView, View
-from .forms import CustomUserCreationForm, DetalleVentaForm
+from .forms import  DetalleVentaForm
 from Inventario.models import Product
 from .models import *
 
