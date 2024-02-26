@@ -8,7 +8,7 @@ function listarProductos() {
     console.log("Nombre de la categoría:", nombre);
 
     $.ajax({
-        url: `/categorias/list/${nombre}/`,
+        url: `/inventario/categorias/list/${nombre}/`,
         type: "get",
         dataType: "json",
         success: function (response) {

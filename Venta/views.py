@@ -67,7 +67,41 @@ class PanelVenta(View):
             # La solicitud no es POST, puedes manejarla según tus necesidades
             return HttpResponse('Esta vista solo acepta solicitudes POST.', status=405)
 
-        
+# from django.shortcuts import redirect
+# from django.views import View
+# from .forms import DetalleVentaForm
+# from .models import Venta
+
+# class PanelVenta(View):
+#     template_name = 'venta/panelVenta.html'
+
+#     def get(self, request):
+#         return render(request, self.template_name)
+
+#     def post(self, request):
+#         formulario = DetalleVentaForm(request.POST)
+#         if formulario.is_valid():
+#             detalle_venta = formulario.save(commit=False)
+            
+#             # Aquí creamos una nueva instancia de Venta si no se proporciona una en el formulario
+#             venta_id = request.POST.get('venta')
+#             if venta_id:
+#                 venta = Venta.objects.get(pk=venta_id)
+#             else:
+#                 venta = Venta.objects.create()
+
+#             detalle_venta.venta = venta
+            
+#             # Restar 1 al stock del producto
+#             detalle_venta.producto.stock -= 1
+#             detalle_venta.producto.save()
+
+#             detalle_venta.save()
+#             return JsonResponse({'mensaje': 'Detalle de venta creado con éxito'})
+#         else:
+#             errores = formulario.errors
+#             return JsonResponse({'errores': errores}, status=400)
+
 
 
 

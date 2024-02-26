@@ -25,7 +25,7 @@ function listarVentaProductos() {
   //creamos una variable para ingresar el bar_code
   var bar_code = $("#bar_code").val();
   $.ajax({
-    url: "/listaVenta/",
+    url: "/venta/listaVenta/",
     type: "get",
     data: { bar_code: bar_code },
     dataType: "json",
@@ -51,7 +51,7 @@ function listarVentaDetalle() {
   var bar_code = $("#bar_code").val();
 
   $.ajax({
-    url: "/listaVenta/",
+    url: "/venta/listaVenta/",
     type: "get",
     data: { bar_code: bar_code },
     dataType: "json",
@@ -102,6 +102,24 @@ function agregarFila(tabla, producto, esSubtotal) {
      filaExistente.find("td.subtotal").text(`$${subtotal}`);
      actualizarTotal();
  
+     // Obtener el contenido del td.subtotal y mostrarlo en la consola
+     var subtotalActualizado = parseFloat(filaExistente.find("td.subtotal").text().replace("$", "").trim());
+     console.log("Subtotal actualizado:", subtotalActualizado);
+     
+     // Actualiza los campos ocultos en el formulario de venta solo si es el producto deseado
+     if (producto.id === 1) {
+       $("#producto_id").val(producto.id);
+       $("#bar_code").val(producto.bar_code);
+       $("#cantidad").val(cantidad);
+       $("#subtotal").val(subtotal);
+
+       console.log("Campos ocultos actualizados. Datos enviados al formulario de venta:");
+       console.log("producto_id:", producto.id);
+       console.log("bar_code:", producto.bar_code);
+       console.log("cantidad:", cantidad);
+       console.log("subtotal:", subtotal);
+     }
+ 
      return;
   }
  
@@ -121,25 +139,9 @@ function agregarFila(tabla, producto, esSubtotal) {
 
  
   }
-  // else {
-  //     fila += `<td><button class="btn btn-danger">Eliminar</button></td>`;
-  // }
  
- 
-  console.log(fila)
   $(tabla).append(fila);
 
 
   actualizarTotal();
-  // Actualiza los campos ocultos en el formulario de venta
-  $("#producto_id").val(producto.id);
-  $("#bar_code").val(producto.bar_code);
-  $("#cantidad").val(cantidad);
-  $("#price_sold").val(producto.price_sold);
-  console.log("Campos ocultos actualizados. Datos enviados al formulario de venta:");
-  console.log("producto_id:", producto.id);  // Verifica que esto imprima algo en la consola
-  console.log("price_sold",producto.price_sold)
-  console.log("bar_code:", producto.bar_code);
-  console.log("cantidad:", cantidad);
-  console.log("totalCalculadora",subtotal )
- }
+}

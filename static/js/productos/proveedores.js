@@ -3,7 +3,7 @@ var $ = jQuery.noConflict();
 function listarProveedores() {
 
     $.ajax({
-        url: `/proveedores/`,
+        url: `/inventario/proveedores/`,
         type: "get",
         dataType: "json",
         success: function (response) {
