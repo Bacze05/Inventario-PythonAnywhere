@@ -49,59 +49,55 @@ class PanelVenta(View):
         return render(request, self.template_name)
 
     def post(self, request):
-        if request.method == 'POST':
-            formulario = DetalleVentaForm(request.POST)
-            if formulario.is_valid():
-                detalle_venta = formulario.save(commit=False)
+            if request.method == 'POST':
+                data = request.POST.getlist('productos[]')
+                for producto_data in data:
+                    # Procesa cada elemento de la lista de productos
+                    formulario = DetalleVentaForm(producto_data)
+                    if formulario.is_valid():
+                        detalle_venta = formulario.save(commit=False)
+                        # Restar 1 al stock del producto
+                        detalle_venta.producto.stock -= 1
+                        detalle_venta.producto.save()
+                        detalle_venta.save()
+                    else:
+                        errores = formulario.errors
+                        return JsonResponse({'errores': errores}, status=400)
                 
-                # Restar 1 al stock del producto
-                detalle_venta.producto.stock -= 1
-                detalle_venta.producto.save()
-
-                detalle_venta.save()
-                return JsonResponse({'mensaje': 'Detalle de venta creado con éxito'})
+                # Una vez procesados todos los productos, puedes devolver una respuesta JSON
+                return JsonResponse({'mensaje': 'Detalles de venta creados con éxito'})
             else:
-                errores = formulario.errors
-                return JsonResponse({'errores': errores}, status=400)
-        else:
-            # La solicitud no es POST, puedes manejarla según tus necesidades
-            return HttpResponse('Esta vista solo acepta solicitudes POST.', status=405)
+                # La solicitud no es POST, puedes manejarla según tus necesidades
+                return HttpResponse('Esta vista solo acepta solicitudes POST.', status=405)
 
-# from django.shortcuts import redirect
-# from django.views import View
-# from .forms import DetalleVentaForm
-# from .models import Venta
+
+from django.views import View
+from django.http import JsonResponse
+from django.shortcuts import render
+from .forms import DetalleVentaForm
 
 # class PanelVenta(View):
 #     template_name = 'venta/panelVenta.html'
 
 #     def get(self, request):
-#         return render(request, self.template_name)
+#         form = DetalleVentaForm()
+#         return render(request, self.template_name, {'form': form})
 
 #     def post(self, request):
 #         formulario = DetalleVentaForm(request.POST)
 #         if formulario.is_valid():
 #             detalle_venta = formulario.save(commit=False)
-            
-#             # Aquí creamos una nueva instancia de Venta si no se proporciona una en el formulario
-#             venta_id = request.POST.get('venta')
-#             if venta_id:
-#                 venta = Venta.objects.get(pk=venta_id)
-#             else:
-#                 venta = Venta.objects.create()
-
-#             detalle_venta.venta = venta
-            
-#             # Restar 1 al stock del producto
-#             detalle_venta.producto.stock -= 1
-#             detalle_venta.producto.save()
-
-#             detalle_venta.save()
+#             productos = formulario.cleaned_data['productos']
+#             for producto in productos:
+#                 detalle_venta = DetalleVenta(venta=detalle_venta.venta, producto=producto, cantidad=detalle_venta.cantidad, precio=detalle_venta.precio, descuento=detalle_venta.descuento)
+#                 # Restar 1 al stock del producto
+#                 producto.stock -= 1
+#                 producto.save()
+#                 detalle_venta.save()
 #             return JsonResponse({'mensaje': 'Detalle de venta creado con éxito'})
 #         else:
 #             errores = formulario.errors
 #             return JsonResponse({'errores': errores}, status=400)
-
 
 
 
