@@ -1,0 +1,23 @@
+body{
+    background-color: white;
+}
+
+.card{
+    background-color: white;
+}
+/* Ajustes para la clase .form-group.row dentro de la tarjeta */
+.card .form-group.row {
+    margin-top: 10px; /* Espaciado superior para separar de otros elementos dentro de la tarjeta */
+    display: flex;
+    justify-content: center; /* Centrar los botones horizontalmente */
+    flex-wrap: wrap; /* Permitir que los elementos se envuelvan a la siguiente línea si no hay suficiente espacio */
+}
+
+.card .form-group.row .col {
+    flex: 0 0 calc(50% - 10px); /* Hace que cada columna ocupe el 50% del ancho disponible, con un pequeño espacio entre ellas */
+    margin: 5px; /* Espaciado entre las columnas */
+}
+.card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+  }
