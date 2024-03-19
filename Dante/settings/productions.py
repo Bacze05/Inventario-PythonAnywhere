@@ -9,8 +9,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = 'RENDER' not in os.environ
-DEBUG = False
-ALLOWED_HOSTS = ['dinietts-c33ix.ondigitalocean.app']
+DEBUG = True
+ALLOWED_HOSTS = ['mundoinfantil-obxsc.ondigitalocean.app']
 DATABASES =  {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -27,7 +27,7 @@ STATIC_ROOT = Path.joinpath(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-CSRF_TRUSTED_ORIGINS = ['https://dinietts-c33ix.ondigitalocean.app','https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://mundoinfantil-obxsc.ondigitalocean.app/','https://*.127.0.0.1']
 SESSION_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SECURE = True
@@ -37,15 +37,15 @@ CSRF_COOKIE_HTTPONLY = True
 
 
 CORS_ORIGIN_WHITELIST = [
-    "https://dinietts-c33ix.ondigitalocean.app",
+    "https://mundoinfantil-obxsc.ondigitalocean.app",
     # Agrega aquí otros orígenes permitidos si es necesario
 ]
 CORS_ALLOW_ALL_ORIGINS = True # If this is used then `CORS_ALLOWED_ORIGINS` will not have any effect
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
-    'https://dinietts-c33ix.ondigitalocean.app',
+    'https://mundoinfantil-obxsc.ondigitalocean.app',
 ] # If this is used, then not need to use `CORS_ALLOW_ALL_ORIGINS = True`
 CORS_ALLOWED_ORIGIN_REGEXES = [
-    'https://dinietts-c33ix.ondigitalocean.app',
+    'https://mundoinfantil-obxsc.ondigitalocean.app',
 ]
 

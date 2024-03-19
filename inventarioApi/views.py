@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from Venta.models import *
+from users.models import *
 import json 
 from django.http import JsonResponse
 from inventarioApi.serializer import *
